@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名稱抽選拉霸機</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8
+        }
+        h1 {
+            color: #333;
+        }
+        .slot-machine {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .slot {
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 50px;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>原圓放牧蛋</h1>
+    <h2>隨機留言抽獎活動</h2>
+
+    <div class="slot-machine">
+        <div class="slot" id="slot">🎰</div>
+    </div>
+    <button onclick="startSlot()">開始抽選</button>
+
+    <script>
+        const names = [
+            "鈺書林", "楊綵潔", "于瑄", "鄭曉彤", "Timmy Kuo", "Tung Han Yun", "陳冠霖", "王婉儀", "何苡瑄", "Yi Shin",
+            "Lin Jia Zhen", "Miya Huang", "蔡瑞汶", "張巧巧", "Eva Tsao", "Yu-Ling Hsu", "鈕慨賽", "Sophie Liu", "郭錦珠", "Calvin Shen",
+            "Annie Huang", "林雅馨", "素.葉", "Fumiko Yu", "高雅慧", "黃祈勝", "曾小京", "樂曉曉", "驊宋", "潘莉",
+            "Novia Chen", "Olivia Tseng", "崔小鈞", "林貴貴", "張梓凱", "梁月霞", "布魯托熱狗堡", "潘美如", "Luo Shi", "黃信憲",
+            "吳佳妮", "潘文澤", "翁豪健", "郭小琦", "湯閡弦", "Ben Wang", "王志宏", "劉琦真", "余瑛琪", "Kianna Wang",
+            "張藝萍", "祝順喜", "Tina Kuo","妙妙"
+        ];
+
+        function getRandomName() {
+            return names[Math.floor(Math.random() * names.length)];
+        }
+
+        function startSlot() {
+            let slot = document.getElementById("slot");
+            let spins = 10; // 滾動次數
+            let delay = 100; // 每次滾動間隔 (毫秒)
+            let count = 0;
+
+            let interval = setInterval(() => {
+                slot.innerText = getRandomName();
+                count++;
+                if (count >= spins) {
+                    clearInterval(interval);
+                    slot.innerText = getRandomName(); // 最終選定的名稱
+                }
+            }, delay);
+        }
+    </script>
+
+</body>
+</html>
